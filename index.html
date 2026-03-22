@@ -164,14 +164,14 @@
   <p class="footer">새로고침하면 다른 식당을 추천해드려요</p>
 
   <script>
-    const CENTER = new kakao.maps.LatLng(37.4491, 126.6620);
+    const CENTER = new kakao.maps.LatLng(37.452132, 126.657018);
     const ps = new kakao.maps.services.Places();
     let collected = [];
 
     function search(page) {
       ps.categorySearch('FD6', onResult, {
         location: CENTER,
-        radius: 400,
+        radius: 450,
         sort: kakao.maps.services.SortBy.DISTANCE,
         size: 15,
         page: page || 1,
