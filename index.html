@@ -3,7 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>인하대 후문 오늘의 식당</title>
+  <title>인하대 후문 오늘의 식당 - 인천 인하대학교 후문 맛집 추천</title>
+  <meta name="description" content="인하대학교 후문 주변 식당을 랜덤으로 추천해주는 서비스입니다. 매일 새로운 맛집을 발견하세요. 인천 인하대 후문 근처 음식점, 카페, 맛집 정보를 제공합니다." />
+  <meta name="keywords" content="인하대 후문 식당, 인하대 맛집, 인하대학교 후문 음식점, 인천 맛집, 인하대 점심, 인하대 저녁, 인하대 근처 식당 추천" />
+  <meta name="author" content="인하대 후문 오늘의 식당" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="인하대 후문 오늘의 식당" />
+  <meta property="og:description" content="인하대학교 후문 주변 식당을 랜덤으로 추천해주는 서비스. 매일 새로운 맛집을 발견하세요!" />
+  <meta property="og:locale" content="ko_KR" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍚</text></svg>" />
   <script type="text/javascript"
     src="//dapi.kakao.com/v2/maps/sdk.js?appkey=66d8fdc6a4c0e504c4727460b61af4bc&libraries=services"></script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4483031628547482"
@@ -138,11 +147,63 @@
       font-size: 0.72rem;
       color: #2d3748;
     }
+
+    .site-info {
+      width: 100%;
+      max-width: 480px;
+      margin-bottom: 28px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 18px 20px;
+      text-align: left;
+    }
+    .site-info h1 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      margin-bottom: 8px;
+    }
+    .site-info p {
+      font-size: 0.82rem;
+      color: #718096;
+      line-height: 1.7;
+    }
+
+    .ad-wrap {
+      width: 100%;
+      max-width: 480px;
+      min-height: 100px;
+      margin-top: 28px;
+      text-align: center;
+    }
+
+    .page-footer {
+      margin-top: 24px;
+      font-size: 0.72rem;
+      color: #2d3748;
+      text-align: center;
+    }
+    .page-footer a {
+      color: #4a5568;
+      text-decoration: none;
+      border-bottom: 1px solid #2d3748;
+    }
+    .page-footer a:hover { color: #718096; }
   </style>
 </head>
 <body>
 
   <p class="top-label">🍚 인하대 후문 · 오늘의 식당</p>
+
+  <div class="site-info">
+    <h1>인하대학교 후문 맛집 랜덤 추천</h1>
+    <p>
+      인하대학교 후문 반경 450m 이내의 식당을 랜덤으로 추천해드립니다.<br>
+      오늘 점심·저녁 메뉴 고민이라면 새로고침 한 번으로 해결하세요.<br>
+      카카오맵 데이터를 기반으로 실시간 주변 맛집 정보를 제공합니다.
+    </p>
+  </div>
 
   <!-- 로딩 -->
   <div id="loading">
@@ -163,7 +224,22 @@
     </div>
   </div>
 
-  <p class="footer">새로고침하면 다른 식당을 추천해드려요</p>
+  <div class="ad-wrap">
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-4483031628547482"
+      data-ad-slot="5098124133"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <p class="page-footer">
+    새로고침하면 다른 식당을 추천해드려요 &nbsp;·&nbsp;
+    <a href="privacy.html">개인정보처리방침</a>
+  </p>
 
   <script>
     const CENTER = new kakao.maps.LatLng(37.452132, 126.657018);
