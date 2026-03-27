@@ -13,6 +13,7 @@
   <meta property="og:description" content="인하대학교 후문 주변 식당을 랜덤으로 추천해주는 서비스. 매일 새로운 맛집을 발견하세요!" />
   <meta property="og:locale" content="ko_KR" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍚</text></svg>" />
+  <script defer src="/_vercel/insights/script.js"></script>
   <script type="text/javascript"
     src="//dapi.kakao.com/v2/maps/sdk.js?appkey=66d8fdc6a4c0e504c4727460b61af4bc&libraries=services"></script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4483031628547482"
@@ -242,28 +243,55 @@
   </p>
 
   <script>
-    const CENTER = new kakao.maps.LatLng(37.452132, 126.657018);
-    const ps = new kakao.maps.services.Places();
-    let collected = [];
+    // 3×3 격자 탐색 — 약 220m 간격, 반경 300m
+    // 위도 220m ≈ 0.00198°, 경도 220m ≈ 0.00250°
+    const GRID_CENTERS = [
+      [37.454112, 126.654518], // NW
+      [37.454112, 126.657018], // N
+      [37.454112, 126.659518], // NE
+      [37.452132, 126.654518], // W
+      [37.452132, 126.657018], // Center
+      [37.452132, 126.659518], // E
+      [37.450152, 126.654518], // SW
+      [37.450152, 126.657018], // S
+      [37.450152, 126.659518], // SE
+    ];
 
-    function search(page) {
-      ps.categorySearch('FD6', onResult, {
-        location: CENTER,
-        radius: 450,
+    const ps = new kakao.maps.services.Places();
+    const seen = new Set();
+    let collected = [];
+    let centerIdx = 0;
+
+    function searchCenter(idx) {
+      if (idx >= GRID_CENTERS.length) { pick(); return; }
+      const [lat, lng] = GRID_CENTERS[idx];
+      ps.categorySearch('FD6', makeHandler(idx), {
+        location: new kakao.maps.LatLng(lat, lng),
+        radius: 300,
         sort: kakao.maps.services.SortBy.DISTANCE,
         size: 15,
-        page: page || 1,
+        page: 1,
       });
     }
 
-    function onResult(data, status, pagination) {
-      if (status !== kakao.maps.services.Status.OK) { showError(); return; }
-      collected = collected.concat(data);
-      if (pagination.hasNextPage && pagination.current < 3) {
-        pagination.nextPage();
-      } else {
-        pick();
-      }
+    function makeHandler(idx) {
+      return function(data, status, pagination) {
+        if (status === kakao.maps.services.Status.OK) {
+          data.forEach(function(p) {
+            if (!seen.has(p.id)) {
+              seen.add(p.id);
+              collected.push(p);
+            }
+          });
+          if (pagination.hasNextPage && pagination.current < 3) {
+            pagination.nextPage();
+          } else {
+            searchCenter(idx + 1);
+          }
+        } else {
+          searchCenter(idx + 1);
+        }
+      };
     }
 
     function pick() {
@@ -296,7 +324,7 @@
         '<p style="color:#4a5568">식당 정보를 불러오지 못했습니다.<br>잠시 후 새로고침 해주세요.</p>';
     }
 
-    search();
+    searchCenter(0);
   </script>
 </body>
 </html>
