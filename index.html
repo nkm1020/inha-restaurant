@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>인하대 후문 오늘의 식당 - 인천 인하대학교 후문 맛집 추천</title>
-  <meta name="description" content="인하대학교 후문 주변 식당을 랜덤으로 추천해주는 서비스입니다. 매일 새로운 맛집을 발견하세요. 인천 인하대 후문 근처 음식점, 카페, 맛집 정보를 제공합니다." />
+  <meta name="description"
+    content="인하대학교 후문 주변 식당을 랜덤으로 추천해주는 서비스입니다. 매일 새로운 맛집을 발견하세요. 인천 인하대 후문 근처 음식점, 카페, 맛집 정보를 제공합니다." />
   <meta name="keywords" content="인하대 후문 식당, 인하대 맛집, 인하대학교 후문 음식점, 인천 맛집, 인하대 점심, 인하대 저녁, 인하대 근처 식당 추천" />
   <meta name="author" content="인하대 후문 오늘의 식당" />
   <meta name="robots" content="index, follow" />
@@ -12,14 +14,19 @@
   <meta property="og:title" content="인하대 후문 오늘의 식당" />
   <meta property="og:description" content="인하대학교 후문 주변 식당을 랜덤으로 추천해주는 서비스. 매일 새로운 맛집을 발견하세요!" />
   <meta property="og:locale" content="ko_KR" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍚</text></svg>" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍚</text></svg>" />
   <script defer src="/_vercel/insights/script.js"></script>
   <script type="text/javascript"
     src="//dapi.kakao.com/v2/maps/sdk.js?appkey=66d8fdc6a4c0e504c4727460b61af4bc&libraries=services"></script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4483031628547482"
     crossorigin="anonymous"></script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: 'Segoe UI', 'Noto Sans KR', sans-serif;
@@ -45,17 +52,27 @@
     #loading {
       text-align: center;
     }
+
     .spinner {
       width: 36px;
       height: 36px;
-      border: 3px solid rgba(255,255,255,0.08);
+      border: 3px solid rgba(255, 255, 255, 0.08);
       border-top-color: #e94560;
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
       margin: 0 auto 16px;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .loading-text { color: #4a5568; font-size: 0.9rem; }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loading-text {
+      color: #4a5568;
+      font-size: 0.9rem;
+    }
 
     /* 카드 */
     #card {
@@ -63,11 +80,19 @@
       width: 100%;
       max-width: 480px;
       text-align: center;
-      animation: fadeUp 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+      animation: fadeUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
     }
+
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px) scale(0.96); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     .category-tag {
@@ -96,6 +121,7 @@
       margin-bottom: 6px;
       line-height: 1.5;
     }
+
     .phone {
       font-size: 0.85rem;
       color: #4a5568;
@@ -109,7 +135,7 @@
       border-radius: 16px;
       overflow: hidden;
       margin-bottom: 24px;
-      border: 1px solid rgba(255,255,255,0.07);
+      border: 1px solid rgba(255, 255, 255, 0.07);
     }
 
     /* 버튼들 */
@@ -117,6 +143,7 @@
       display: flex;
       gap: 10px;
     }
+
     .btn {
       flex: 1;
       padding: 13px;
@@ -131,17 +158,28 @@
       align-items: center;
       justify-content: center;
     }
+
     .btn-primary {
       background: linear-gradient(90deg, #e94560, #f5a623);
       color: #fff;
     }
-    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(233,69,96,0.35); }
-    .btn-secondary {
-      background: rgba(255,255,255,0.06);
-      color: #a0aec0;
-      border: 1px solid rgba(255,255,255,0.1);
+
+    .btn-primary:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(233, 69, 96, 0.35);
     }
-    .btn-secondary:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: #a0aec0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
 
     .footer {
       margin-top: 16px;
@@ -153,18 +191,20 @@
       width: 100%;
       max-width: 480px;
       margin-bottom: 28px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 14px;
       padding: 18px 20px;
       text-align: left;
     }
+
     .site-info h1 {
       font-size: 1rem;
       font-weight: 700;
       color: #e2e8f0;
       margin-bottom: 8px;
     }
+
     .site-info p {
       font-size: 0.82rem;
       color: #718096;
@@ -185,14 +225,82 @@
       color: #2d3748;
       text-align: center;
     }
+
     .page-footer a {
       color: #4a5568;
       text-decoration: none;
       border-bottom: 1px solid #2d3748;
     }
-    .page-footer a:hover { color: #718096; }
+
+    .page-footer a:hover {
+      color: #718096;
+    }
+
+    /* 토글 스위치 스타일 */
+    .filter-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .toggle-label {
+      font-size: 0.8rem;
+      color: #a0aec0;
+      font-weight: 500;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 22px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.1);
+      transition: .3s;
+      border-radius: 22px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background-color: #718096;
+      transition: .3s;
+      border-radius: 50%;
+    }
+
+    input:checked+.slider {
+      background-color: #e94560;
+    }
+
+    input:checked+.slider:before {
+      transform: translateX(18px);
+      background-color: #fff;
+    }
   </style>
 </head>
+
 <body>
 
   <p class="top-label">🍚 인하대 후문 · 오늘의 식당</p>
@@ -204,6 +312,13 @@
       오늘 점심·저녁 메뉴 고민이라면 새로고침 한 번으로 해결하세요.<br>
       카카오맵 데이터를 기반으로 실시간 주변 맛집 정보를 제공합니다.
     </p>
+    <div class="filter-row">
+      <span class="toggle-label">술집 포함</span>
+      <label class="switch">
+        <input type="checkbox" id="barToggle">
+        <span class="slider"></span>
+      </label>
+    </div>
   </div>
 
   <!-- 로딩 -->
@@ -226,12 +341,8 @@
   </div>
 
   <div class="ad-wrap">
-    <ins class="adsbygoogle"
-      style="display:block"
-      data-ad-client="ca-pub-4483031628547482"
-      data-ad-slot="5098124133"
-      data-ad-format="auto"
-      data-full-width-responsive="true"></ins>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4483031628547482" data-ad-slot="5098124133"
+      data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>
       (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
@@ -243,24 +354,37 @@
   </p>
 
   <script>
-    // 3×3 격자 탐색 — 약 220m 간격, 반경 300m
-    // 위도 220m ≈ 0.00198°, 경도 220m ≈ 0.00250°
-    const GRID_CENTERS = [
-      [37.454112, 126.654518], // NW
-      [37.454112, 126.657018], // N
-      [37.454112, 126.659518], // NE
-      [37.452132, 126.654518], // W
-      [37.452132, 126.657018], // Center
-      [37.452132, 126.659518], // E
-      [37.450152, 126.654518], // SW
-      [37.450152, 126.657018], // S
-      [37.450152, 126.659518], // SE
-    ];
+    // 6×6 격자 탐색 — 범위를 세분화하여 더 많은 식당 수집
+    const LAT_MIN = 37.450152, LAT_MAX = 37.454112;
+    const LNG_MIN = 126.654518, LNG_MAX = 126.659518;
+    const GRID_SIZE = 6;
+    const GRID_CENTERS = [];
+
+    for (let i = 0; i < GRID_SIZE; i++) {
+      for (let j = 0; j < GRID_SIZE; j++) {
+        const lat = LAT_MIN + (LAT_MAX - LAT_MIN) * (i / (GRID_SIZE - 1));
+        const lng = LNG_MIN + (LNG_MAX - LNG_MIN) * (j / (GRID_SIZE - 1));
+        GRID_CENTERS.push([lat, lng]);
+      }
+    }
+
+    const barToggle = document.getElementById('barToggle');
+    // 기본값: 술집 제외 (false)
+    let includeBars = localStorage.getItem('includeBars') === 'true';
+    barToggle.checked = includeBars;
+
+    barToggle.addEventListener('change', function () {
+      includeBars = this.checked;
+      localStorage.setItem('includeBars', includeBars);
+      // 이미 로딩이 완료된 상태라면 카드 갱신
+      if (document.getElementById('card').style.display === 'block') {
+        pick();
+      }
+    });
 
     const ps = new kakao.maps.services.Places();
     const seen = new Set();
     let collected = [];
-    let centerIdx = 0;
 
     function searchCenter(idx) {
       if (idx >= GRID_CENTERS.length) { pick(); return; }
@@ -275,9 +399,9 @@
     }
 
     function makeHandler(idx) {
-      return function(data, status, pagination) {
+      return function (data, status, pagination) {
         if (status === kakao.maps.services.Status.OK) {
-          data.forEach(function(p) {
+          data.forEach(function (p) {
             if (!seen.has(p.id)) {
               seen.add(p.id);
               collected.push(p);
@@ -294,9 +418,24 @@
       };
     }
 
+    const BAR_KEYWORDS = ['술집', '호프', '포장마차', '이자카야', '포차', '펍', '바(BAR)', '주점', '맥주집'];
+
     function pick() {
       if (collected.length === 0) { showError(); return; }
-      const place = collected[Math.floor(Math.random() * collected.length)];
+
+      // 술집 필터링
+      let filtered = collected;
+      if (!includeBars) {
+        filtered = collected.filter(p => {
+          const cat = p.category_name || '';
+          return !BAR_KEYWORDS.some(k => cat.includes(k));
+        });
+      }
+
+      // 만약 필터 결과가 0개라면 (그럴 리는 거의 없겠지만) 원본에서 선택
+      if (filtered.length === 0) filtered = collected;
+
+      const place = filtered[Math.floor(Math.random() * filtered.length)];
 
       const cat = (place.category_name || '').split('>').pop().trim() || '음식점';
       document.getElementById('cat').textContent = cat;
@@ -327,4 +466,5 @@
     searchCenter(0);
   </script>
 </body>
+
 </html>
