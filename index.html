@@ -51,6 +51,8 @@
     /* 로딩 상태 */
     #loading {
       text-align: center;
+      width: 100%;
+      max-width: 320px;
     }
 
     .spinner {
@@ -60,7 +62,22 @@
       border-top-color: #e94560;
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
-      margin: 0 auto 16px;
+      margin: 0 auto 20px;
+    }
+
+    .progress-container {
+      width: 100%;
+      height: 6px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #e94560, #f5a623);
+      transition: width 0.3s ease;
     }
 
     @keyframes spin {
@@ -324,7 +341,10 @@
   <!-- 로딩 -->
   <div id="loading">
     <div class="spinner"></div>
-    <p class="loading-text">근처 식당을 불러오는 중…</p>
+    <div class="progress-container">
+      <div id="progressBar" class="progress-bar"></div>
+    </div>
+    <p class="loading-text" id="loadingText">식당 정보를 불러오는 중…</p>
   </div>
 
   <!-- 결과 카드 -->
@@ -429,6 +449,12 @@
         pick();
         return;
       }
+      
+      // 진행도 업데이트
+      const progress = (idx / GRID_CENTERS.length) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+      document.getElementById('loadingText').textContent = `식당 정보를 불러오는 중… (${Math.round(progress)}%)`;
+
       const [lat, lng] = GRID_CENTERS[idx];
       ps.categorySearch('FD6', makeHandler(idx), {
         location: new kakao.maps.LatLng(lat, lng),
@@ -466,6 +492,12 @@
       pickCount++;
       if (pickCount === 10) {
         alert("왜 자꾸 새로고침해?");
+      } else if (pickCount === 20) {
+        alert("아직도 못 골랐어? 그냥 아무거나 먹자! 배고프잖아... 😢");
+      } else if (pickCount === 30) {
+        alert("이제 나도 지쳤어... 이 정도면 운명이야! 그냥 여기서 먹자! 🤣");
+      } else if (pickCount === 40) {
+        alert("더 이상은 못 찾겠다! 메뉴는 배달의 민족 켜서 고르는 게 어때? 🍔");
       }
 
       // 술집 필터링
